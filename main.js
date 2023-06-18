@@ -1,3 +1,4 @@
+import { validPuzzle, invalid } from "./puzzles.js"
 const board = document.querySelector("#board")
 
 const gridMin = 1
@@ -26,29 +27,27 @@ const generateRandomNumber = () => {
 }
 
 const seedGrid = () => {
-  const numbers = Array(9)
-    .fill()
-    .map((_, index) => index + 1)
-  numbers.sort(() => Math.random() - 0.5)
-
+  // const numbers = Array(9)
+  //   .fill()
+  //   .map((_, index) => index + 1)
+  // numbers.sort(() => Math.random() - 0.5)
   // grid.forEach((row) => {
   // 	const rowSet = new Set()
   // 	while (rowSet.size !== 9) {
   // 		rowSet.add(generateRandomNumber())
   // 	}
   // })
-
-  grid.forEach((row) => {
-    row.forEach((item, index) => {
-      item.element.innerHTML = numbers[index]
-    })
-  })
 }
 
 const draw = () => {
-  grid.forEach((row) => {
-    row.forEach((item) => {
-      item.element.innerHTML = Math.floor(Math.random() * 10)
+  grid.forEach((row, rowIndex) => {
+    row.forEach((item, colIndex) => {
+      const value = validPuzzle[rowIndex][colIndex]
+      if (value) {
+        item.element.innerHTML = value
+      } else {
+        item.element.innerHTML = `<input type="text" class="input"></input>`
+      }
     })
   })
 }
@@ -56,8 +55,8 @@ const draw = () => {
 const init = () => {
   setupBoard()
   console.log(grid)
-  seedGrid()
-  // draw()
+  // seedGrid()
+  draw()
 }
 
 init()
