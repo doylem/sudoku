@@ -21,6 +21,7 @@
 - Check if numbers in section contain unique numbers [1 .. 9]
 - Check if numbers in row contains unique numbers [1 .. 9]
 - Check if numbers in column contains unique numbers [1 .. 9]
+- Use a Set (unique properties) to check validity
 
 ## Grid
 - CSS Grid

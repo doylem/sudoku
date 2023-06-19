@@ -1,6 +1,6 @@
 html {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  font-size: 2.5em;
+  font-size: 16px;
 }
 
 body {
@@ -14,16 +14,40 @@ body {
   margin: 0;
 }
 
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.validateButton {
+  margin-top: 20px;
+  font-size: 2rem;
+  padding: 1.5rem 3rem;
+  background-color: greenyellow;
+}
+.validationResult {
+  margin: 20px 0;
+  font-size: 2rem;
+  color: #eee;
+}
+
+.success {
+  background-color: lightgreen;
+}
+.error {
+  background-color: pink;
+}
+
 #board {
   display: grid;
   grid-template-columns: repeat(9, 1fr);
   grid-template-rows: repeat(9, 1fr);
-  /* display: flex;
-  justify-content: center;
-  align-items: center; */
   height: 100vmin;
   width: 100vmin;
   background-color: #fff;
+  font-size: 4vw;
 }
 
 /* #board > div {
@@ -52,7 +76,7 @@ body {
   width: 90%;
   height: 90%;
   border: 0;
-  font-size: 1rem;
+  font-size: 4vw;
   text-align: center;
   color: blue;
 }
