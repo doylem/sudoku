@@ -1,4 +1,4 @@
-import { validPuzzle, invalid } from "./puzzle.js"
+import { getState } from "./state.js"
 
 const board = document.querySelector("#board")
 export const gridMin = 1
@@ -26,8 +26,9 @@ const createNumberInputField = () => {
   return inputField
 }
 
-const buildPuzzleCell = (x, y) => {
-  const value = validPuzzle[x - 1][y - 1]
+const buildPuzzleCell = (y, x) => {
+  const state = getState()
+  const value = state.grid[y - 1][x - 1]
   const box = createBox(x, y)
   board.appendChild(box)
   const properties = { element: box, value, col: x, row: y }
@@ -48,10 +49,10 @@ const buildPuzzleCell = (x, y) => {
 }
 
 export const setupGrid = () => {
-  for (let x = gridMin; x <= gridMax; x++) {
+  for (let y = gridMin; y <= gridMax; y++) {
     let row = []
-    for (let y = gridMin; y <= gridMax; y++) {
-      const cell = buildPuzzleCell(x, y)
+    for (let x = gridMin; x <= gridMax; x++) {
+      const cell = buildPuzzleCell(y, x)
       row.push(cell)
     }
     grid.push(row)

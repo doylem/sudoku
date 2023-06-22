@@ -38,25 +38,35 @@ O(n^2) - Quadratic time.
 
 ## JS
 
+**main**.js
+```js
+  import { setupGrid } from "./board.js"
+  // import { initControls } from "./controls.js"
+
+  const initGame = () => {
+    setupGrid()
+    // initControls()
+  }
+
+  initGame()
+```
+
 **board.js**
 - setupGrid
   - build components to render
     - assign div gridRowStart and gridColumnStart
+    - populate with values, or input fields for empty squares
+    - setup listeners for input fields
+      - update state on 'input'
 
 ```js 
   box.style.gridColumnStart = x
   box.style.gridRowStart = y
 ```
 
-  - populate with values, or input fields for empty squares
-  - setup listeners for input fields
-    - update state
-    - 
-
-
-**puzzle.js**
+**state.js**
 - Return a valid puzzle as [][]
-- Check validity of puzzle
+- Check validity of a given puzzle
 - 
 
 **controls.js**
