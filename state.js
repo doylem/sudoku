@@ -43,34 +43,35 @@ export const validate = () => {
   for (let rowIndex = 0; rowIndex < state.grid.length; rowIndex++) {
     let col = []
     for (let colIndex = 0; colIndex < state.grid.length; colIndex++) {
-      col.push(state.grid[rowIndex][colIndex])
+      col.push(state.grid[colIndex][rowIndex])
     }
     // check if numbers are unique in each column
     if (!isUnique(col)) return false
   }
 
-  // check if numbers are unique in a block
-  let blockStartRow = 0
-  let blockStartCol = 0
-  while (blockStartRow < 9 && blockStartCol < 9) {
+  // check unique values in each block
+  let blockRowStart = 0
+  let blockColStart = 0
+  const gridMax = 9
+  const blockSize = 3
+
+  while (blockRowStart < 9 && blockColStart < 9) {
     let block = []
-    for (
-      let rowIndex = blockStartRow;
-      rowIndex < blockStartRow + 3;
-      rowIndex++
-    ) {
-      for (
-        let colIndex = blockStartCol;
-        colIndex < blockStartCol + 3;
-        colIndex++
-      ) {
-        block.push(state.grid[colIndex][rowIndex])
+    for (let row = blockRowStart; row < blockRowStart + blockSize; row++) {
+      for (let col = blockColStart; col < blockColStart + blockSize; col++) {
+        block.push(state.grid[row][col])
       }
     }
-    // check if numbers are unique in each column
-    if (!isUnique(block)) return false
-    blockStartRow += 3
-    blockStartCol += 3
+    if (!isUnique(block)) {
+      return false
+    }
+
+    // If we have hit the end on the x axis, reset it and increment the y
+    blockColStart += 3
+    if (blockColStart === 9 && blockRowStart !== 9) {
+      blockColStart = 0
+      blockRowStart += 3
+    }
   }
 
   return true

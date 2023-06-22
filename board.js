@@ -7,11 +7,11 @@ export const grid = []
 
 const createBox = (x, y) => {
   const box = document.createElement("div")
-  box.className = `box ${x % 3 === 0 && "separator-x"} ${
-    y % 3 === 0 && "separator-y"
+  box.className = `box ${y % 3 === 0 && "separator-x"} ${
+    x % 3 === 0 && "separator-y"
   } `
-  box.style.gridColumnStart = x
-  box.style.gridRowStart = y
+  box.style.gridRowStart = x
+  box.style.gridColumnStart = y
 
   return box
 }
@@ -26,9 +26,9 @@ const createNumberInputField = () => {
   return inputField
 }
 
-const buildPuzzleCell = (y, x) => {
+const buildPuzzleCell = (x, y) => {
   const state = getState()
-  const value = state.grid[y - 1][x - 1]
+  const value = state.grid[x - 1][y - 1]
   const box = createBox(x, y)
   board.appendChild(box)
   const properties = { element: box, value, col: x, row: y }
@@ -39,7 +39,9 @@ const buildPuzzleCell = (y, x) => {
   } else {
     const inputField = createNumberInputField()
     inputField.addEventListener("input", (event) => {
-      properties.value = parseInt(event.target.value)
+      // properties.value = parseInt(event.target.value)
+      // Update the grid value in place
+      state.grid[x - 1][y - 1] = parseInt(event.target.value)
       console.log("event.target.value:", event.target.value)
     })
     box.appendChild(inputField)
@@ -49,10 +51,10 @@ const buildPuzzleCell = (y, x) => {
 }
 
 export const setupGrid = () => {
-  for (let y = gridMin; y <= gridMax; y++) {
+  for (let x = gridMin; x <= gridMax; x++) {
     let row = []
-    for (let x = gridMin; x <= gridMax; x++) {
-      const cell = buildPuzzleCell(y, x)
+    for (let y = gridMin; y <= gridMax; y++) {
+      const cell = buildPuzzleCell(x, y)
       row.push(cell)
     }
     grid.push(row)
