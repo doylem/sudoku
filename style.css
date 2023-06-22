@@ -2,7 +2,6 @@ html {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   font-size: 16px;
 }
-
 body {
   box-sizing: border-box;
   display: flex;
@@ -19,6 +18,44 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+#board {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  grid-template-rows: repeat(9, 1fr);
+  height: 100vmin;
+  width: 100vmin;
+  background-color: #fff;
+  font-size: 4vw;
+}
+
+.box {
+  border: 1px solid #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* .box:nth-of-type(3n) {
+  border-right: 3px solid black;
+} */
+
+.separator-x {
+  border-right: 3px solid black;
+}
+
+.separator-y {
+  border-bottom: 3px solid black;
+}
+
+.input {
+  width: 90%;
+  height: 90%;
+  border: 0;
+  font-size: 4vw;
+  text-align: center;
+  color: blue;
 }
 
 .validateButton {
@@ -38,45 +75,4 @@ body {
 }
 .error {
   background-color: pink;
-}
-
-#board {
-  display: grid;
-  grid-template-columns: repeat(9, 1fr);
-  grid-template-rows: repeat(9, 1fr);
-  height: 100vmin;
-  width: 100vmin;
-  background-color: #fff;
-  font-size: 4vw;
-}
-
-/* #board > div {
-  border: 1px solid #333;
-} */
-
-.box {
-  border: 1px solid #333;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-/* .box:nth-of-type(3n) {
-  border-right: 3px solid black;
-} */
-.separator-x {
-  border-right: 3px solid black;
-}
-
-.separator-y {
-  border-bottom: 3px solid black;
-}
-
-.input {
-  width: 90%;
-  height: 90%;
-  border: 0;
-  font-size: 4vw;
-  text-align: center;
-  color: blue;
 }
